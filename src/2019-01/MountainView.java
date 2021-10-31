@@ -57,8 +57,7 @@ public class MountainView {
         public int compareTo(Mountain m) {
             if (this.left != m.left) {
                 return this.left - m.left;
-            }
-            else {
+            } else {
                 return m.right - this.right;
             }
         }
