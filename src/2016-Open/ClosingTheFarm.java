@@ -83,8 +83,7 @@ public class ClosingTheFarm {
         {
             if (result[i]) {
                 out.println("YES");
-            }
-            else {
+            } else {
                 out.println("NO");
             }
         }
