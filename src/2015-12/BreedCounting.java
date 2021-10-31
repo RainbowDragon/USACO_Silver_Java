@@ -22,28 +22,23 @@ public class BreedCounting {
         int n = Integer.parseInt(st.nextToken());
         int q = Integer.parseInt(st.nextToken());
 
-        int[][] cdf = new int[k][n+1];
+        int[][] prefixSum = new int[k][n+1];
 
         for (int j = 0; j < k; j++)
         {
-            cdf[j][0] = 0;
+            prefixSum[j][0] = 0;
         }
 
         for (int i = 1; i <= n; i++)
         {
-            int breed = Integer.parseInt(f.readLine());
+            int breed = Integer.parseInt(f.readLine()) - 1;
 
             for (int j = 0; j < k; j++)
             {
-                if (i == 0) {
-                    cdf[j][i] = 0;
-                }
-                else {
-                    cdf[j][i] = cdf[j][i-1];
-                }
+                prefixSum[j][i] = prefixSum[j][i-1];
             }
 
-            cdf[breed-1][i]++;
+            prefixSum[breed][i]++;
         }
 
         // Output:
@@ -61,7 +56,7 @@ public class BreedCounting {
                     out.print(" ");
                 }
 
-                out.print(cdf[j][end] - cdf[j][start-1]);
+                out.print(prefixSum[j][end] - prefixSum[j][start-1]);
             }
             out.println();
         }
