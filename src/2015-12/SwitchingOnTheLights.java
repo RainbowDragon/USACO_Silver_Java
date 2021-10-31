@@ -91,8 +91,7 @@ public class SwitchingOnTheLights {
             int nx = room.x + dx[i];
             int ny = room.y + dy[i];
 
-            if (isValidIndex(nx, ny) && visited[nx][ny])
-            {
+            if (isValidIndex(nx, ny) && visited[nx][ny]) {
                 return true;
             }
         }
