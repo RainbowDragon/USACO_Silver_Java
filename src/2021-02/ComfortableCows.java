@@ -44,15 +44,13 @@ public class ComfortableCows {
 
     public static void dfs(int x, int y) {
 
-        if (cows[x][y])
-        {
+        if (cows[x][y]) {
             return;
         }
         cows[x][y] = true;
         result++;
 
-        if (neighbors[x][y] == 3)
-        {
+        if (neighbors[x][y] == 3) {
             add(x, y);
         }
 
@@ -62,8 +60,7 @@ public class ComfortableCows {
             int newY = y + dy[i];
             neighbors[newX][newY]++;
 
-            if (cows[newX][newY] && neighbors[newX][newY] == 3)
-            {
+            if (cows[newX][newY] && neighbors[newX][newY] == 3) {
                 add(newX, newY);
             }
         }
@@ -75,8 +72,7 @@ public class ComfortableCows {
         {
             int newX = x + dx[i];
             int newY = y + dy[i];
-            if (!cows[newX][newY])
-            {
+            if (!cows[newX][newY]) {
                 dfs(newX, newY);
             }
         }
