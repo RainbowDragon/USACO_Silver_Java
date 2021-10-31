@@ -34,8 +34,7 @@ public class HoofPaperScissors {
             {
                 if (i > 0) {
                     prefixSum[i][j] = prefixSum[i-1][j];
-                }
-                else {
+                } else {
                     prefixSum[i][j] = 0;
                 }
             }
@@ -49,8 +48,7 @@ public class HoofPaperScissors {
             {
                 if (i < n-1) {
                     suffixSum[i][j] = suffixSum[i+1][j];
-                }
-                else {
+                } else {
                     suffixSum[i][j] = 0;
                 }
             }
@@ -67,8 +65,7 @@ public class HoofPaperScissors {
                 for (int k = 0; k < 3; k++)
                 {
                     int cur = prefixSum[i][j] + suffixSum[i+1][k];
-                    if (cur > result)
-                    {
+                    if (cur > result) {
                         result = cur;
                     }
                 }
