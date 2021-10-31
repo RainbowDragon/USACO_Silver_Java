@@ -71,8 +71,7 @@ public class Moocast {
 
         for (int j = 0; j < n; j++)
         {
-            if (canReach[i][j] && !visited[j])
-            {
+            if (canReach[i][j] && !visited[j]) {
                 dfs(j);
             }
         }
