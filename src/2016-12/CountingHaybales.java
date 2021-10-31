@@ -60,11 +60,9 @@ public class CountingHaybales {
 
             if (value < array[mid]) {
                 right = mid;
-            }
-            else if (value > array[mid]) {
+            } else if (value > array[mid]) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 return mid + 1;
             }
         }
