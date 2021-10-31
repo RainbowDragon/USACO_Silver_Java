@@ -25,7 +25,7 @@ public class MountainView {
             int y = Integer.parseInt(st.nextToken());
             mountains[i] = new Mountain(x-y, x+y);
         }
-        Arrays.sort(mountains, new MountainComparator());
+        Arrays.sort(mountains);
 
         int result = 0;
         int rightend = Integer.MIN_VALUE;
@@ -44,7 +44,7 @@ public class MountainView {
         out.close();
     }
 
-    static class Mountain {
+    static class Mountain implements Comparable<Mountain> {
 
         public int left;
         public int right;
@@ -53,16 +53,13 @@ public class MountainView {
             this.left = left;
             this.right = right;
         }
-    }
 
-    static class MountainComparator implements Comparator<Mountain> {
-
-        public int compare(Mountain m1, Mountain m2) {
-            if (m1.left != m2.left) {
-                return m1.left - m2.left;
+        public int compareTo(Mountain m) {
+            if (this.left != m.left) {
+                return this.left - m.left;
             }
             else {
-                return m2.right - m1.right;
+                return m.right - this.right;
             }
         }
     }
