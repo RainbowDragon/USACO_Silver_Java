@@ -46,8 +46,7 @@ public class IcyPerimeter {
                     if (area > maxArea) {
                         maxArea = area;
                         minPerimeter = perimeter;
-                    }
-                    else if (area == maxArea) {
+                    } else if (area == maxArea) {
                         minPerimeter = Math.min(minPerimeter, perimeter);
                     }
                 }
