@@ -82,8 +82,7 @@ public class WhyDidTheCowCrossTheRoadIII {
             int ny = y + dy[i];
             String key = nx + "|" + ny;
 
-            if (!blocks.contains(key))
-            {
+            if (!blocks.contains(key)) {
                 dfs(visited, nx, ny, n);
             }
         }
