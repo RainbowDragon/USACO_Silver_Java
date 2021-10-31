@@ -47,8 +47,7 @@ public class Lifeguards {
 
             if (state.isStart) {
                 set.add(state.index);
-            }
-            else {
+            } else {
                 set.remove(state.index);
             }
 
