@@ -31,10 +31,10 @@ public class SocialDistancing {
         for (int i = 0; i < m; i++)
         {
             st = new StringTokenizer(f.readLine());
-            long low = Long.parseLong(st.nextToken());
-            long high = Long.parseLong(st.nextToken());
-            intervals.add(new Interval(low, high));
-            max = Math.max(max, high);
+            long start = Long.parseLong(st.nextToken());
+            long end = Long.parseLong(st.nextToken());
+            intervals.add(new Interval(start, end));
+            max = Math.max(max, end);
         }
         intervals.sort(new IntervalComparator());
 
@@ -60,9 +60,9 @@ public class SocialDistancing {
         long last = Long.MIN_VALUE;
         for (Interval interval : intervals)
         {
-            while (Math.max(last+d, interval.low) <= interval.high)
+            while (Math.max(last+d, interval.start) <= interval.end)
             {
-                last = Math.max(last+d, interval.low);
+                last = Math.max(last+d, interval.start);
                 count++;
             }
 
@@ -76,19 +76,19 @@ public class SocialDistancing {
 
     static class Interval {
 
-        public long low;
-        public long high;
+        public long start;
+        public long end;
 
-        public Interval (long low, long high) {
-            this.low = low;
-            this.high = high;
+        public Interval (long start, long end) {
+            this.start = start;
+            this.end = end;
         }
     }
 
     static class IntervalComparator implements Comparator<Interval> {
 
         public int compare(Interval i1, Interval i2) {
-            return i1.low < i2.low ? -1 : 1;
+            return i1.start < i2.start ? -1 : 1;
         }
     }
 }
