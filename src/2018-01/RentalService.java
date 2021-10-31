@@ -52,8 +52,7 @@ public class RentalService {
         {
             if (index >= 0) {
                 rent_total[i] = rent_total[i-1] + rents[index];
-            }
-            else {
+            } else {
                 rent_total[i] = rent_total[i-1];
             }
             index--;
@@ -73,8 +72,7 @@ public class RentalService {
                     sell_total[i] += stores[index].price * amount;
                     stores[index].gallon -= amount;
                     amount = 0;
-                }
-                else {
+                } else {
                     sell_total[i] += stores[index].price * stores[index].gallon;
                     amount -= stores[index].gallon;
                     index--;
