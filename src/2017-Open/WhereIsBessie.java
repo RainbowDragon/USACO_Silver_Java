@@ -36,7 +36,7 @@ public class WhereIsBessie {
             }
         }
 
-        pcls = new Vector<PCL>();
+        pcls = new Vector<>();
         for (int i1 = 0; i1 < n; i1++)
             for (int i2 = i1; i2 < n; i2++)
                 for (int j1 = 0; j1 < n; j1++)
