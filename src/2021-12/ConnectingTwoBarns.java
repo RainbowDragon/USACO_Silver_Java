@@ -86,21 +86,16 @@ public class ConnectingTwoBarns {
 
         long result = getShortestDistance(starts, ends);
 
-        long[] startDistance = new long[n];
-        long[] endDistance = new long[n];
-        for (int i = 0; i < n; i++)
-        {
-            startDistance[i] = Long.MAX_VALUE;
-            endDistance[i] = Long.MAX_VALUE;
-        }
+        HashMap<Integer, Long> startDistance = new HashMap<Integer, Long>();
+        HashMap<Integer, Long> endDistance = new HashMap<Integer, Long>();
 
         getEndDistance(starts, middles, states, startDistance);
         getEndDistance(ends, middles, states, endDistance);
 
-        for (int i = 0; i < n; i++)
+        for (Integer key : startDistance.keySet())
         {
-            if (i != startState && i != endState && startDistance[i] != Long.MAX_VALUE && endDistance[i] != Long.MAX_VALUE) {
-                result = Math.min(result, startDistance[i]+endDistance[i]);
+            if (key != startState && key != endState) {
+                result = Math.min(result, startDistance.get(key)+endDistance.get(key));
             }
         }
 
@@ -149,7 +144,7 @@ public class ConnectingTwoBarns {
         return result;
     }
 
-    public static void getEndDistance(ArrayList<Integer> oneEnd, ArrayList<Integer> middle, int[] states, long[] endDistance) {
+    public static void getEndDistance(ArrayList<Integer> oneEnd, ArrayList<Integer> middle, int[] states, HashMap<Integer, Long> endDistance) {
 
         int index = 0;
         for (int i = 0; i < middle.size(); i++)
@@ -168,7 +163,13 @@ public class ConnectingTwoBarns {
                 current = Math.min(current, distance(oneEnd.get(index-1), middle.get(i)));
             }
 
-            endDistance[states[middle.get(i)]] = Math.min(endDistance[states[middle.get(i)]], current);
+            int key = states[middle.get(i)];
+            if (endDistance.containsKey(key)) {
+                endDistance.put(key, Math.min(endDistance.get(key), current));
+            }
+            else {
+                endDistance.put(key, current);
+            }
         }
     }
 
