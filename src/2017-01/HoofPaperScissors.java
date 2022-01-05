@@ -21,7 +21,7 @@ public class HoofPaperScissors {
         int[][] prefixSum = new int[n][3];
         int[][] suffixSum = new int[n][3];
 
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        HashMap<String, Integer> map = new HashMap<>();
         map.put("H", 0);
         map.put("P", 1);
         map.put("S", 2);
