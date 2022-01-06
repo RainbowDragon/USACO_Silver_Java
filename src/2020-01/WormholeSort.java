@@ -29,7 +29,7 @@ public class WormholeSort {
         for (int i = 0; i < n; i++)
         {
             positions[i] = Integer.parseInt(st.nextToken()) - 1;
-            wormholelist[i] = new ArrayList<Wormhole>();
+            wormholelist[i] = new ArrayList<>();
         }
 
         int maxWeight = 0;
