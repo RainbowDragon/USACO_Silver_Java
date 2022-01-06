@@ -17,7 +17,7 @@ public class CitiesAndStates {
         BufferedReader f = new BufferedReader(new FileReader(FileName + ".in"));
 
         int n = Integer.parseInt(f.readLine());
-        HashMap<String, Long> counts = new HashMap<String, Long>();
+        HashMap<String, Long> counts = new HashMap<>();
 
         for (int i = 0; i < n; i++)
         {
