@@ -21,8 +21,8 @@ public class StuckInARut {
         PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 
         int n = Integer.parseInt(f.readLine());
-        northCows = new ArrayList<Cow>();
-        eastCows = new ArrayList<Cow>();
+        northCows = new ArrayList<>();
+        eastCows = new ArrayList<>();
 
         for (int i = 0; i < n; i++)
         {
