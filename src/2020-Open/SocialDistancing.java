@@ -25,7 +25,7 @@ public class SocialDistancing {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        intervals = new ArrayList<Interval>();
+        intervals = new ArrayList<>();
         long min = 1;
         long max = 0;
         for (int i = 0; i < m; i++)
