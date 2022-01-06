@@ -86,8 +86,8 @@ public class ConnectingTwoBarns {
 
         long result = getShortestDistance(starts, ends);
 
-        HashMap<Integer, Long> startDistance = new HashMap<Integer, Long>();
-        HashMap<Integer, Long> endDistance = new HashMap<Integer, Long>();
+        HashMap<Integer, Long> startDistance = new HashMap<>();
+        HashMap<Integer, Long> endDistance = new HashMap<>();
 
         getEndDistance(starts, middles, states, startDistance);
         getEndDistance(ends, middles, states, endDistance);
