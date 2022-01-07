@@ -26,56 +26,76 @@ public class ClosestCowWins {
         for (int i = 0; i < K; i++)
         {
             st = new StringTokenizer(f.readLine());
-            int position = Integer.parseInt(st.nextToken());
-            int tastiness = Integer.parseInt(st.nextToken());
+            long position = Long.parseLong(st.nextToken());
+            long tastiness = Long.parseLong(st.nextToken());
             patches[i] = new Patch(position, tastiness);
         }
         Arrays.sort(patches);
 
-        int[] cows = new int[M];
+        long[] cows = new long[M];
         for (int i = 0; i < M; i++)
         {
-            cows[i] = Integer.parseInt(f.readLine());
+            cows[i] = Long.parseLong(f.readLine());
         }
         Arrays.sort(cows);
 
-        Interval[] intervals = new Interval[K];
+        ArrayList<Long> tastes = new ArrayList<>();
+
         int index = 0;
-        for (int i = 0; i < K; i++)
+        long first = 0;
+        while (index < K && patches[index].position < cows[0])
         {
-            while (index < M && cows[index] < patches[i].position)
+            first += patches[index].tastiness;
+            index++;
+        }
+        tastes.add(first);
+
+        for (int i = 1; i < M; i++)
+        {
+            while (index < K && patches[index].position <= cows[i-1])
             {
                 index++;
             }
 
-            if (index == M) {
-                index--;
+            long sum = 0;
+            long maxHalf = 0;
+            long current = 0;
+
+            int start = index;
+            long distance = cows[i] - cows[i-1];
+
+            while (index < K && patches[index].position < cows[i])
+            {
+                sum += patches[index].tastiness;
+                current += patches[index].tastiness;
+
+                while ((patches[index].position - patches[start].position)*2 >= distance)
+                {
+                    current -= patches[start].tastiness;
+                    start++;
+                }
+
+                maxHalf = Math.max(maxHalf, current);
+                index++;
             }
 
-            int distance = Math.abs(cows[index] - patches[i].position);
-            if (index > 0) {
-                distance = Math.min(distance, Math.abs(cows[index-1] - patches[i].position));
-            }
-
-            intervals[i] = new Interval(patches[i].position - distance, patches[i].position + distance);
+            tastes.add(maxHalf);
+            tastes.add(sum - maxHalf);
         }
 
-        ArrayList<Long> tastes = new ArrayList<>();
-        index = 0;
+        while (index < K && patches[index].position <= cows[M-1])
+        {
+            index++;
+        }
+        long last = 0;
         while (index < K)
         {
-            long current = 0;
-            int end = intervals[index].end;
-            while (index < K && intervals[index].start < end)
-            {
-                current += patches[index].tastiness;
-                index++;
-            }
-
-            tastes.add(current);
+            last += patches[index].tastiness;
+            index++;
         }
-        Collections.sort(tastes, Collections.reverseOrder());
+        tastes.add(last);
 
+        Collections.sort(tastes, Collections.reverseOrder());
         long result = 0;
         for (int i = 0; i < N; i++)
         {
@@ -83,34 +103,21 @@ public class ClosestCowWins {
         }
 
         out.println(result);
-
         out.close();
-
     }
 
     static class Patch implements Comparable<Patch> {
 
-        public int position;
-        public int tastiness;
+        public long position;
+        public long tastiness;
 
-        public Patch (int position, int tastiness) {
+        public Patch (long position, long tastiness) {
             this.position = position;
             this.tastiness = tastiness;
         }
 
         public int compareTo(Patch patch) {
-            return this.position - patch.position;
-        }
-    }
-
-    static class Interval {
-
-        public int start;
-        public int end;
-
-        public Interval (int start, int end) {
-            this.start = start;
-            this.end = end;
+            return Long.compare(this.position, patch.position);
         }
     }
 }
