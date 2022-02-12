@@ -92,10 +92,10 @@ public class Cereal2 {
             }
             else {
                 if (root == -1 && e.end != parent) {
-                    root = e.cow.first;
-                    cycleEdge = e.cow.index;
-                    hasCereal[e.cow.index] = true;
-                    result.add(e.cow.index);
+                    root = e.first;
+                    cycleEdge = e.index;
+                    hasCereal[e.index] = true;
+                    result.add(e.index);
                 }
             }
         }
@@ -107,35 +107,26 @@ public class Cereal2 {
 
         for (Edge e : graph[index])
         {
-            if (cereal[e.end] != 2 && e.cow.index != cycleEdge) {
-                hasCereal[e.cow.index] = true;
-                result.add(e.cow.index);
+            if (cereal[e.end] != 2 && e.index != cycleEdge) {
+                hasCereal[e.index] = true;
+                result.add(e.index);
                 assign(e.end);
             }
         }
     }
 
-    static class Cow {
+    static class Edge {
 
         public int index;
         public int first;
         public int second;
+        public int end;
 
-        public Cow (int index, int first, int second) {
+        public Edge (int index, int first, int second, int end) {
             this.index = index;
             this.first = first;
             this.second = second;
-        }
-    }
-
-    static class Edge {
-
-        public int end;
-        public Cow cow;
-
-        public Edge (int index, int first, int second, int end) {
             this.end = end;
-            this.cow = new Cow(index, first, second);
         }
     }
 }
